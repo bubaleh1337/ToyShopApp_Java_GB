@@ -11,4 +11,7 @@ public abstract class Toy {
     public String toString() {
         return String.format("Toy: №%d. %s - %d q.", id, name, amount);
     }
+    public int getAmount() {
+        return amount;
+    }
 }
