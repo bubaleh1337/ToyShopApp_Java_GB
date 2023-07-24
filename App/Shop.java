@@ -5,38 +5,33 @@ import java.util.Random;
 
 public class Shop {
     private ArrayList<Toy> toys;
+
     public Shop(ArrayList<Toy> toys) {
         this.toys = toys;
     }
-    public Toy setWeight(ArrayList<Toy> toys) {
-        int weight = 0, countWeight = 0;
-        for (Toy toy:toys) {
-            weight += toy.getAmount();
-        }
-        double average = Math.random() * weight;
-        for (Toy toy:toys) {
-            countWeight += toy.getAmount();
-            if (countWeight >= average) return toy;
+
+    public Toy setChance(ArrayList<Toy> toys) {
+        int totalToys = toys.size();
+        double chance = Math.random() * totalToys;
+        int countWeight = 0;
+        countWeight += toys.size();
+        for (Toy toy : toys) {
+            if (countWeight >= chance) return toy;
         }
         return null;
     }
+
     public Toy chooseOnCount(ArrayList<Toy> toys) {
         return null;
     }
-    public Toy getPrice(){
-        Random rand = new Random();
-        Toy toy = rand(chooseOnCount(toys));
-    }
-    public void saveToyForLottery() {
-        Toy toy = getPrice();
+    public void saveToyForLottery(ArrayList<Toy> toys) {
+        ArrayList<Toy> toy = toys;
         String text = toy.toString();
-        try(FileWriter writer = new FileWriter("Toys.txt", true))
-        {
+        try (FileWriter writer = new FileWriter("Toys.txt", true)) {
             writer.write(text);
             writer.append('\n');
             writer.flush();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
 
             System.out.println(ex.getMessage());
         }
