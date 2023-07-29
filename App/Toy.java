@@ -1,29 +1,19 @@
-public abstract class Toy {
-    int id, amount;
+public class Toy implements Lotable {
+    int id;
     String name;
-    double weight;
-    int price;
-    public Toy(int id, String name, int amount, double weight, int price) {
+    public Toy(int id, String name) {
         this.id = id;
         this.name = name;
-        this.amount = amount;
-        this.weight = weight;
-        this.price = price;
     }
     @Override
-    public String toString() {
-        return String.format("Toy: №%d. %s - %d q. - %s$", id, name, amount, price);
-    }
-    public int getId(){
+    public int getId() {
         return id;
     }
     public String getName() {
         return name;
     }
-    public int getAmount() {
-        return amount;
-    }
-    public int getPrice() {
-        return price;
+    @Override
+    public String toString() {
+        return "Игрушка №" + id + ". " + name;
     }
 }
